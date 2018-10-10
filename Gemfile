@@ -20,7 +20,7 @@ dbfile = File.expand_path("../config/database.yml", __FILE__)
 #end
 
 #group :production do
- # gem 'pg'
+  gem 'pg'
 #end
 
 source 'https://rubygems.org'
@@ -52,10 +52,11 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'simplecov', :require => false
  # gem 'sqlite3'
-  gem 'pg'
+  #gem 'pg'
   gem 'cucumber'
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner'
   gem 'capybara'
 end
+
