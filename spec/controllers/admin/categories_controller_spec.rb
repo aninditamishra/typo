@@ -20,7 +20,19 @@ describe Admin::CategoriesController do
     before(:each) do
       get :edit, :id => Factory(:category).id
     end
+    
+    it 'should add a new category' do
+      post :new, :category => {:name => 'Category new', :keywords => 'new keyword', :permalink => 'new Permalink', :description => 'Description new'}
+      assigns(:category).should_not be_nil
+      expect(flash[:notice]).to eq("Category was successfully saved.")
+    end
 
+    it 'should allow category_keywords' do
+        post :edit, :category => {:name => 'Category new', :keywords => 'new keyword', :permalink => 'new Permalink', :description => 'Description new'}
+        assigns(:category).should_not be_nil
+        expect(category.keywords).to eq("new keyword")
+    end
+    
     it 'should render template new' do
       assert_template 'new'
       assert_tag :tag => "table",
