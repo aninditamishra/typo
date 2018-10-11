@@ -27,10 +27,10 @@ describe Admin::CategoriesController do
       expect(flash[:notice]).to eq("Category was successfully saved.")
     end
 
-    it 'should allow category_keywords' do
-        post :edit, @category = :category => {:name => 'Category new', :keywords => 'new keyword', :permalink => 'new Permalink', :description => 'Description new'}
-        assigns(:category).should_not be_nil
-        expect(category[:keywords]).to eq("new keyword")
+    it 'should check whether we land on the right page' do
+        post :edit, :category => {:name => 'Category new', :keywords => 'new keyword', :permalink => 'new Permalink', :description => 'Description new'}
+        expect(response).to redirect_to('/admin/categories/new')
+        assert_response :redirect, :action => 'index'
     end
     
     it 'should render template new' do
